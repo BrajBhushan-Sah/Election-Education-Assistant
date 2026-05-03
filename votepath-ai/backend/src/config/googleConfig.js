@@ -17,7 +17,7 @@ const db = admin.firestore();
 
 // Initialize Gemini API
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const geminiModel = genAI.getGenerativeModel({ model: "gemini-pro" });
+const geminiModel = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 // Initialize Translation API
 const translate = new Translate();
