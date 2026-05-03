@@ -24,9 +24,12 @@ const generateAnswer = async (userMessage, history = []) => {
   try {
     const chat = geminiModel.startChat({
       history: [
-        { role: 'user', parts: SYSTEM_PROMPT },
-        { role: 'model', parts: SYSTEM_PROMPT_ACKNOWLEDGEMENT },
-        ...history,
+        { role: 'user', parts: [{ text: SYSTEM_PROMPT }] },
+        { role: 'model', parts: [{ text: SYSTEM_PROMPT_ACKNOWLEDGEMENT }] },
+        ...history.map(msg => ({
+          role: msg.role === 'user' ? 'user' : 'model',
+          parts: [{ text: msg.parts }]
+        })),
       ],
     });
 
