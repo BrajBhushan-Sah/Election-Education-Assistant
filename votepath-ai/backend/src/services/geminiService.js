@@ -26,14 +26,14 @@ const generateAnswer = async (userMessage, history = []) => {
       history: [
         { role: 'user', parts: [{ text: SYSTEM_PROMPT }] },
         { role: 'model', parts: [{ text: SYSTEM_PROMPT_ACKNOWLEDGEMENT }] },
-        ...history.map(msg => ({
+        ...(history || []).map(msg => ({
           role: msg.role === 'user' ? 'user' : 'model',
           parts: [{ text: msg.parts }]
         })),
       ],
     });
 
-    const result = await chat.sendMessage(userMessage);
+    const result = await chat.sendMessage([{ text: userMessage }]);
     const response = await result.response;
     return response.text();
   } catch (error) {
