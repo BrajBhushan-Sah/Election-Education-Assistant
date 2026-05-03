@@ -1,0 +1,23 @@
+# Secrets
+.env*
+*.json
+!package.json
+!package-lock.json
+!firebase.json
+
+# Logs
+*-debug.log*
+*.log
+
+# Dependencies
+node_modules/
+dist/
+build/
+.cache/
+
+# IDE settings
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
